@@ -1,8 +1,12 @@
+library(readr)
+library(dplyr)
 library(knitr)
 library(rvest)
 library(gsubfn)
 library(tidyr)
 library(shiny)
+library(xml2)
+library(proto)
 
 options(gsubfn.engine="R")
 
