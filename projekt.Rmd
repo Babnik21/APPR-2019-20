@@ -1,6 +1,6 @@
 ---
 title: "Poročilo pri predmetu Analiza podatkov s programom R"
-author: "Študent FMF"
+author: "Jure Babnik"
 output:
   html_document: default
   pdf_document:
@@ -26,9 +26,12 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+V svoji projektni nalogi sem analiziral košarkarje lige NBA 
+od leta 1980 naprej. Igralce sem analiziral na podlagi osebnih
+podatkov, kot so višina, teža, rojstna država, ter njihove
+statistike na tekmah (dosežene točke, skoki, asistence, itd.),
+ter iskal povezave med njimi. 
 
-![](slike/grb.png)
 
 ***
 
@@ -38,8 +41,9 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Uvozili smo podatke o košarkarjih v obliki CSV s spletnega
+portala Kaggle ter v obliki HTML s strani Basketball Reference.
+Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
 
 1. `druzine` - podatki o družinah za vsako občino
   - `obcina` - spremenljivka: ime občine (neurejen faktor),

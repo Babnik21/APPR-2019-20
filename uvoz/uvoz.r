@@ -17,19 +17,22 @@ players <- read.csv("nba_data\\Players.csv", na="")
 seasons.stats <- read.csv("nba_data\\Seasons_Stats.csv")
 players$X <- NULL
 seasons.stats$X <- NULL
+players.rodovniski <- players %>% select(Player, height, weight, collage,
+                                         birth_city)
+colnames(players.rodovniski) <- c("Player", "Height", "Weight", "College", "Birth_State")
 
-players.rodovniski <- na.omit(players, invert=FALSE)
+players.rodovniski <- players.rodovniski[!is.na(players.rodovniski$Birth_State), ]
+
+#Uredimo tabelo s statističnimi podatki igralcev
 annual.totals <- seasons.stats %>% 
   select(Year, Player, Age, G, MP, FG, FGA, X3P, X3PA, X2P, 
          X2PA, FT, FTA, ORB, DRB, TRB, AST, BLK, TOV, STL, FG., X3P., X2P., FT.) %>%
   na.omit()
+
 colnames(annual.totals) <- c("Year", "Player", "Age", "GP", "MP", "FG", "FGA", "3P", "3PA", "2P", "2PA", "FT",
                              "FTA", "ORB", "DRB", "TRB", "AST", "BLK", "TOV", "STL", "FG%", "3P%", "2P%", "FT%")
 
-annual.totals <- annual.totals %>% group_by(Player, Year) %>% filter(row_number() == 1)
-
-
-
+annual.totals <- annual.totals %>% group_by(Player, Year) %>% filter(row_number() == 1) #Odstranimo odvečne vnose
 
 #uvozimo iz spletne strani
 per.36.stats <- NULL
@@ -43,15 +46,15 @@ for (i in seq(1980, 2017, 1)) {
 per.36.stats$GS <- NULL
 per.36.stats$Tm <- NULL
 na.omit(per.36.stats)
+
 per.36.stats <- per.36.stats %>% group_by(Player, Year) %>% filter(row_number() == 1)
 
 per.36.stats <- subset(per.36.stats, grepl('^\\d+$', per.36.stats$G))
 
+# V tabelo s statistikami igralcev dodamo njihove osebne podatke
+annual.totals <- merge(annual.totals, players.rodovniski, by="Player")
+per.36.stats <- merge(per.36.stats, players.rodovniski, by="Player")
 
 
 
-# Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
-# potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
-# datoteko, tukaj pa bi klicali tiste, ki jih potrebujemo v
-# 2. fazi. Seveda bi morali ustrezno datoteko uvoziti v prihodnjih
-# fazah.
+
