@@ -29,7 +29,7 @@ annual.totals <- seasons.stats %>%
          X2PA, FT, FTA, ORB, DRB, TRB, AST, BLK, TOV, STL, FG., X3P., X2P., FT.) %>%
   na.omit()
 
-colnames(annual.totals) <- c("Year", "Player", "Age", "GP", "MP", "FG", "FGA", "3P", "3PA", "2P", "2PA", "FT",
+colnames(annual.totals) <- c("Year", "Player", "Age", "G", "MP", "FG", "FGA", "3P", "3PA", "2P", "2PA", "FT",
                              "FTA", "ORB", "DRB", "TRB", "AST", "BLK", "TOV", "STL", "FG%", "3P%", "2P%", "FT%")
 
 annual.totals <- annual.totals %>% group_by(Player, Year) %>% filter(row_number() == 1) #Odstranimo odvečne vnose
@@ -45,6 +45,7 @@ for (i in seq(1980, 2017, 1)) {
 }
 per.36.stats$GS <- NULL
 per.36.stats$Tm <- NULL
+per.36.stats$Rk <- NULL
 na.omit(per.36.stats)
 
 per.36.stats <- per.36.stats %>% group_by(Player, Year) %>% filter(row_number() == 1)

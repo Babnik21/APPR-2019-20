@@ -43,23 +43,25 @@ source("uvoz/uvoz.r", encoding="UTF-8")
 
 Uvozili smo podatke o košarkarjih v obliki CSV s spletnega
 portala Kaggle ter v obliki HTML s strani Basketball Reference.
-Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Podatke imamo v dveh razpredelnicah v obliki *tidy data*. Večino kategorij najdemo v obeh razpredelnicah; razlika je, da so v drugi tabeli podatki preračunani, da predstavljajo statistiko, ki naj bi jo igralec dosegal z minutažo 36 minut na tekmo. 
 
-1. `druzine` - podatki o družinah za vsako občino
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `velikost.druzine` - spremenljivka: število otrok v družini (število: 1, 2, 3 ali 4, kjer zadnja vrednost pomeni 4 ali več),
-  - `stevilo.druzin` - meritev: število družin z ustreznim številom otrok v ustrezni občini (število).
+1. `Player` - ime košarkarja
+  - `Year` - leto 
+  - `Pos` - pozicija, na kateri igra košarkar
+  - `Age` - starost igralca v izbrani sezoni
+  - `G` - odigrane tekme
+  - `MP` - odigrane minute
+  - `Height` - višina igralca
+  - `Weight` - telesna masa igralca
+  - `College` - univerza, ki jo je igralec obiskoval pred
+  vstopom v ligo NBA
+  - `Birth_state` - rojstna (zvezna) država
+  
+  Ostali stolpci predstavljajo posamezne statistične podatke
+  kot so (uspešni) meti za 2 ali 3 točke, prosti meti, podaje,
+  skoki, izgubljene žoge, itd.
+  
 
-2. `obcine` - podatki o občinah
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `povrsina` - meritev: površina občine v km$^2$ (število),
-  - `prebivalci` - meritev: prebivalstvo občine (število),
-  - `gostota` - meritev: število prebivalcev na km$^2$ (število),
-  - `naselja` - meritev: število naselij v občini (število),
-  - `ustanovitev` - meritev: leto ustanovitve občine (število),
-  - `pokrajina` - meritev: pokrajina, ki ji občina pripada (neurejen faktor),
-  - `regija` - meritev: regija, ki ji občina pripada (neurejen faktor),
-  - `odcepitev` - meritev: podatki o občinah, od katerih se je občina odcepila (besedilo).
 
 **Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
 
