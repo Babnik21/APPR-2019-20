@@ -26,12 +26,24 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme
 
-V svoji projektni nalogi sem analiziral košarkarje lige NBA 
-od leta 1980 naprej. Igralce sem analiziral na podlagi osebnih
+V svoji projektni nalogi bom analiziral košarkarje lige NBA 
+od leta 1980 naprej. Igralce bom analiziral na podlagi osebnih
 podatkov, kot so višina, teža, rojstna država, ter njihove
 statistike na tekmah (dosežene točke, skoki, asistence, itd.),
-ter iskal povezave med njimi. 
+ter iskal povezave med njimi. Pred začetkom sem postavil tri 
+hipoteze, katerih veljavnost želim preveriti.
 
+1. Starejši igralci v povprečju zabeležijo manj izgubljenih žog (zaradi izkušenj)
+2. Starejši igralci v povprečju zabeležijo manj skokov (zaradi 
+slabše telesne pripravljenosti)
+3. Višji igralci dosegajo več skokov ter blokad
+4. Nižji igralci dosegajo več asistenc
+5. Nižji igralci beležijo boljše odstotke meta iz igre ter 
+prosih metov
+6. Igralci, ki so igrali v ameriški študentski ligi so vstopili
+v NBA bolje pripravljeni na profesionalno košarko (primerjava 
+prvih sezon posameznih igralcev)
+7. Evropski košarkarji igrajo "pametnejšo" košarko
 
 ***
 
@@ -43,7 +55,10 @@ source("uvoz/uvoz.r", encoding="UTF-8")
 
 Uvozili smo podatke o košarkarjih v obliki CSV s spletnega
 portala Kaggle ter v obliki HTML s strani Basketball Reference.
-Podatke imamo v dveh razpredelnicah v obliki *tidy data*. Večino kategorij najdemo v obeh razpredelnicah; razlika je, da so v drugi tabeli podatki preračunani, da predstavljajo statistiko, ki naj bi jo igralec dosegal z minutažo 36 minut na tekmo. 
+Podatke imamo v dveh razpredelnicah v obliki *tidy data*. 
+Večino kategorij najdemo v obeh razpredelnicah; razlika je, da 
+so v drugi tabeli podatki preračunani, da predstavljajo 
+statistiko, ki naj bi jo igralec dosegal z minutažo 36 minut na tekmo. 
 
 1. `Player` - ime košarkarja
   - `Year` - leto 
@@ -59,7 +74,17 @@ Podatke imamo v dveh razpredelnicah v obliki *tidy data*. Večino kategorij najd
   
   Ostali stolpci predstavljajo posamezne statistične podatke
   kot so (uspešni) meti za 2 ali 3 točke, prosti meti, podaje,
-  skoki, izgubljene žoge, itd.
+  skoki, izgubljene žoge, itd. Uporabili smo:
+  
+  - `AST` - asistence
+  - `TRB` - skupni skoki (v napadu in obrambi)
+  - `TOV` - izgubljene žoge
+  - `PTS` - dosežene točke
+  - `BLK` - blokade
+  - `STL` - ukradene žoge
+  - `3P%` - odstotek uspešnih metov za 3 točke
+  - `2P%` - odstotek uspešnih metov za 2 točki
+  - `FT%` - odstotek uspešnih prostih metov
   
 
 

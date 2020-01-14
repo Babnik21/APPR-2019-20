@@ -8,8 +8,13 @@ library(tidyr)
 library(shiny)
 library(xml2)
 
-
 #sl <- locale("sl", decimal_mark=",", grouping_mark=".")
+
+#Za začetek bomo obdržali veliko stolpcev v naših tabelah.
+#Morda bo kakšna ugotovitev pokazala, da je smiselno bolj podrobno
+#analizirati podatke, zato si jih bomo pustili v tabelah.
+#Tiste stolpce, ki jih bomo potrebovali v začetku analize, bomo
+#vzeli in iz njih naredili očiščene tabele.
 
 #uvozimo podatke iz csv datotek:
 player.data <- read.csv("nba_data\\player_data.csv")
@@ -54,6 +59,7 @@ per.36.stats <- subset(per.36.stats, grepl('^\\d+$', per.36.stats$G))
 
 # V tabelo s statistikami igralcev dodamo njihove osebne podatke
 annual.totals <- merge(annual.totals, players.rodovniski, by="Player")
+
 per.36.stats <- merge(per.36.stats, players.rodovniski, by="Player")
 
 
