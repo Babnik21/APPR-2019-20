@@ -45,10 +45,10 @@ v NBA bolje pripravljeni na profesionalno košarko (primerjava
 prvih sezon posameznih igralcev)
 7. Evropski košarkarji igrajo "pametnejšo" košarko
 
-![](slike/slika_kobe.jpg)
+![](slike/nba.jpg)
 
-vir: `https://eu.usatoday.com/story/sports/nba/2020/01/26/kobe-bryant-nba-legend-dies-41-helicopter-crash-california/4582281002/`
 
+vir: `https://cdn.nba.net/nba-drupal-prod/2019-09/SEO-image-NBA-logoman.jpg`
 ***
 
 # Obdelava, uvoz in čiščenje podatkov
@@ -103,14 +103,26 @@ statistiko, ki naj bi jo igralec dosegal z minutažo 36 minut na tekmo.
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-```{r graf_izgubljene, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Graf prihodka, dolžine in ocene filma'}
+```{r graf_izgubljene, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa izgubljenih žog na 36 min in na tekmo.'}
 graf_izgubljene
 ```
 
 
 
-```{r graf_skoki, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Graf prihodka, dolžine in ocene filma'}
+```{r graf_skoki, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov na 36 min in na tekmo.'}
 graf_skoki
+```
+
+```{r graf_visina, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov in blokad na 36 min.'}
+graf_visina
+```
+
+```{r graf_ izji_ast, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov in blokad na 36 min.'}
+graf_nizji_ast
+```
+
+```{r graf_nizji_ft_36, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov in blokad na 36 min.'}
+grid.arrange(graf_nizji_ft_36, graf_nizji_ft_annual, graf_nizji_fg_36, graf_nizji_fg_annual)
 ```
 
 
