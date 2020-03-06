@@ -7,6 +7,9 @@ library(tidyr)
 library(shiny)
 library(xml2)
 library(proto)
+library(plyr)
+library(gridExtra)
+library(ggpubr)
 
 options(gsubfn.engine="R")
 

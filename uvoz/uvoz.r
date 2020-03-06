@@ -64,4 +64,8 @@ per.36.stats <- merge(per.36.stats, players.rodovniski, by="Player")
 
 
 
+per.36.stats[-c(1, 2, 30, 31)] <- mutate_all(per.36.stats[-c(1, 2, 30, 31)], function(x) as.numeric(as.character(x)))
+annual.totals[-c(1, 27, 28)] <- mutate_all(annual.totals[-c(1, 27, 28)], function(x) as.numeric(as.character(x)))
+
+
 
