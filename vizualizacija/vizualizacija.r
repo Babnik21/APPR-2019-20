@@ -119,3 +119,11 @@ graf_nizji_ft_fg <- grid.arrange(graf_nizji_ft_36, graf_nizji_ft_annual,
 
 print(graf_nizji_ft_fg)
 
+
+#zemljevid
+world_map <- data.set(data("world.cities"))
+  
+drzave_36 <- annual.totals[!duplicated(annual.totals[,c('Player')]),][,c(1, 28)]
+
+drzave_rojstva <- data.frame(table(drzave_36$Birth_State))
+latlong <- geocode(drzave_rojstva$Var1)

@@ -11,6 +11,9 @@ library(plyr)
 library(gridExtra)
 library(ggpubr)
 library(tidyverse)
+library(ggmap)
+library(maps)
+library(forcats)
 
 options(gsubfn.engine="R")
 
