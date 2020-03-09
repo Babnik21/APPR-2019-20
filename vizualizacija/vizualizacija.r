@@ -96,21 +96,19 @@ graf_nizji_ast <- ggarrange(graf_nizji_ast_36, graf_nizji_ast_annual, nrow = 1)
 
 #nižji boljši odtotki prostih metov in metov iz igre
 nizji_ft_fg_36 <- per.36.stats[,c(28, 7, 8, 16, 17)]
-colnames(nizji_ft_fg_36)[c(3, 5)] <- c("FG", "FT")
 nizji_ft_fg_annual <- annual.totals[,c(25, 24, 13, 21, 7)]
-colnames(nizji_ft_fg_annual)[c(2, 4)] <- c("FT", "FG")
 
 
-graf_nizji_ft_36 <- ggplot(nizji_ft_fg_36 %>% filter(FTA >= 2), aes(x=Height, y =FT)) +
+graf_nizji_ft_36 <- ggplot(nizji_ft_fg_36 %>% filter(FTA >= 2), aes(x=Height, y =FT_procent)) +
   geom_point() + ggtitle("Zadeti prosti meti na 36 min") +
   geom_smooth(color="purple")
-graf_nizji_ft_annual <- ggplot(nizji_ft_fg_annual %>% filter(FTA >= 2), aes(x=Height, y =FT)) +
+graf_nizji_ft_annual <- ggplot(nizji_ft_fg_annual %>% filter(FTA >= 2), aes(x=Height, y =FT_procent)) +
   geom_point() + ggtitle("Zadeti prosti meti na tekmo") +
   geom_smooth(color="purple")
-graf_nizji_fg_36 <- ggplot(nizji_ft_fg_36 %>% filter(FGA >= 2), aes(x=Height, y =FG)) +
+graf_nizji_fg_36 <- ggplot(nizji_ft_fg_36 %>% filter(FGA >= 2), aes(x=Height, y =FG_procent)) +
   geom_point() + ggtitle("Zadeti meti iz igre na 36 min") +
   geom_smooth(color="green")
-graf_nizji_fg_annual <- ggplot(nizji_ft_fg_annual %>% filter(FGA >= 2), aes(x=Height, y =FG)) +
+graf_nizji_fg_annual <- ggplot(nizji_ft_fg_annual %>% filter(FGA >= 2), aes(x=Height, y =FG_procent)) +
   geom_point() + ggtitle("Zadeti meti iz igre na tekmo") +
   geom_smooth(color="green")
 
@@ -121,9 +119,23 @@ print(graf_nizji_ft_fg)
 
 
 #zemljevid
-world_map <- data.set(data("world.cities"))
-  
-drzave_36 <- annual.totals[!duplicated(annual.totals[,c('Player')]),][,c(1, 28)]
+zemljevid <- map_data("world")
+igralci_drzave <- annual.totals[!duplicated(annual.totals[,c('Player')]),][,c(1, 28)]
+drzave <- data.frame(table(igralci_drzave$Birth_State))
+amerika <- c(intersect(drzave$Var1, state.name))
+vsota_ameriskih <- 0
+for (state in amerika) {
+  vsota_ameriskih <- vsota_ameriskih + drzave$Freq[drzave$Var1 == state]
+}
 
-drzave_rojstva <- data.frame(table(drzave_36$Birth_State))
-latlong <- geocode(drzave_rojstva$Var1)
+'%ni%' <- Negate('%in%')
+USA <- data.frame("USA", vsota_ameriskih)
+names(USA) <- c("Var1", "Freq")
+drzave <- rbind(drzave, USA)
+drzave <- drzave %>% filter(Var1  %ni% amerika)
+
+map <- ggplot(some.eu.maps, aes(x = long, y = lat)) +
+  geom_polygon(aes( group = group, fill = Freq))
+
+
+

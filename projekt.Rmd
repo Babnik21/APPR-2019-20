@@ -43,7 +43,6 @@ prosih metov
 6. Igralci, ki so igrali v ameriški študentski ligi so vstopili
 v NBA bolje pripravljeni na profesionalno košarko (primerjava 
 prvih sezon posameznih igralcev)
-7. Evropski košarkarji igrajo "pametnejšo" košarko
 
 ![](slike/nba.jpg)
 
@@ -139,6 +138,6 @@ source("analiza/analiza.r", encoding="UTF-8")
 
 ***
 
-#```{r shiny, echo=FALSE}
-#shinyAppDir("shiny", options=list(width="100%", height=600))
-#```
+```{r shiny, echo=FALSE}
+shinyAppDir("shiny", options=list(width="100%", height=600))
+```

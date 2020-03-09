@@ -1,12 +1,5 @@
 # 2. faza: Uvoz podatkov
-library(readr)
-library(dplyr)
-library(knitr)
-library(rvest)
-library(gsubfn)
-library(tidyr)
-library(shiny)
-library(xml2)
+
 
 #sl <- locale("sl", decimal_mark=",", grouping_mark=".")
 
@@ -23,7 +16,7 @@ seasons.stats <- read.csv("nba_data\\Seasons_Stats.csv")
 players$X <- NULL
 seasons.stats$X <- NULL
 players.rodovniski <- players %>% select(Player, height, weight, collage,
-                                         birth_city)
+                                         birth_state)
 colnames(players.rodovniski) <- c("Player", "Height", "Weight", "College", "Birth_State")
 
 players.rodovniski <- players.rodovniski[!is.na(players.rodovniski$Birth_State), ]
@@ -67,5 +60,10 @@ per.36.stats <- merge(per.36.stats, players.rodovniski, by="Player")
 per.36.stats[-c(1, 2, 30, 31)] <- mutate_all(per.36.stats[-c(1, 2, 30, 31)], function(x) as.numeric(as.character(x)))
 annual.totals[-c(1, 27, 28)] <- mutate_all(annual.totals[-c(1, 27, 28)], function(x) as.numeric(as.character(x)))
 
+
+
+#preimenovanje
+names(per.36.stats)[c(8:14, 17)] <- c("FG_procent", "triP", "triPA", "triP_procent", "dvaP", "dvaPA", "dvaP_procent", "FT_procent")
+names(annual.totals)[c(8:11, 21:24)] <- c("triP", "triPA", "dvaP", "dvaPA", "FG_procent", "triP_procent", "dvaP_procent", "FT_procent")
 
 

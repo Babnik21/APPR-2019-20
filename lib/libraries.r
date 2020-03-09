@@ -14,6 +14,7 @@ library(tidyverse)
 library(ggmap)
 library(maps)
 library(forcats)
+library(tmap)
 
 options(gsubfn.engine="R")
 
