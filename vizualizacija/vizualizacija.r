@@ -112,10 +112,8 @@ graf_nizji_fg_annual <- ggplot(nizji_ft_fg_annual %>% filter(FGA >= 2), aes(x=He
   geom_point() + ggtitle("Zadeti meti iz igre na tekmo") +
   geom_smooth(color="green")
 
-graf_nizji_ft_fg <- grid.arrange(graf_nizji_ft_36, graf_nizji_ft_annual,
-                                 graf_nizji_fg_36, graf_nizji_fg_annual)
 
-print(graf_nizji_ft_fg)
+
 
 
 #zemljevid
@@ -133,9 +131,32 @@ USA <- data.frame("USA", vsota_ameriskih)
 names(USA) <- c("Var1", "Freq")
 drzave <- rbind(drzave, USA)
 drzave <- drzave %>% filter(Var1  %ni% amerika)
+names(drzave)[1] <- "region"
+zemljevid <- full_join(drzave, zemljevid, by= "region")
 
-map <- ggplot(some.eu.maps, aes(x = long, y = lat)) +
-  geom_polygon(aes( group = group, fill = Freq))
+
+ 
+
+map_svet <- ggplot(zemljevid, aes(x = long, y = lat, group=group)) +
+  geom_polygon(data = zemljevid %>% filter(region != "USA"), aes(fill=Freq)) +
+  scale_fill_gradientn(colors=c("blue", "yellow", "green")) +
+  geom_polygon(data = zemljevid %>% filter(region == "USA"), fill = "red")+
+  theme_void()+ theme(legend.position="right") +labs(fill="Število košarkašev")
+
+
+
+#zemljevid - ZDA
+
+amerika_states <- data.frame(table(igralci_drzave$Birth_State)) %>%
+  filter(Var1 %in% state.name)
+names(amerika_states)[1] <- "region"
+amerika_states$region <- tolower(amerika_states$region)
+amerika_states <- full_join(amerika_states, map_data("state"), by="region")
+
+zemljevid_zda <- ggplot(amerika_states, aes(x = long, y = lat, group = group))+
+  geom_polygon(aes(fill = Freq)) + theme_void() +
+  scale_fill_gradientn(colors=c("blue", "yellow", "green")) +
+  labs(fill="Število košarkašev")
 
 
 
