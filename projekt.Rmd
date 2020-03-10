@@ -135,14 +135,9 @@ map_svet
 zemljevid_zda
 ```
 
-***
-
-# Napredna analiza podatkov
-
-```{r analiza, echo=FALSE, message=FALSE}
-source("analiza/analiza.r", encoding="UTF-8")
+```{r graf_ast_tov, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Graf ast-tov ratio'}
+graf_ast_tov
 ```
-
 
 
 

@@ -158,5 +158,11 @@ zemljevid_zda <- ggplot(amerika_states, aes(x = long, y = lat, group = group))+
   scale_fill_gradientn(colors=c("blue", "yellow", "green")) +
   labs(fill="Število košarkašev")
 
+#AST TOV ratio
+ast_tov <- annual.totals[c("Height", "AST", "TOV")]
+ast_tov$ast.tov <- round(ast_tov$AST/ast_tov$TOV, 2)
+ast_tov <- ast_tov[c(1, 4)]
 
+graf_ast_tov <- ggplot(ast_tov, aes(x=Height, y=ast.tov)) + geom_point() +
+  geom_smooth(color="purple")
 
