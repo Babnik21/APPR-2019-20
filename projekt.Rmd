@@ -102,19 +102,25 @@ statistiko, ki naj bi jo igralec dosegal z minutažo 36 minut na tekmo.
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
+
+Spodnji graf prikazuje povprečja izgubljenih žog košarkarjev na 36 minut (levo) in na tekmo (desno) glede na košarkarjevo starost.
 ```{r graf_izgubljene, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa izgubljenih žog na 36 min in na tekmo.'}
 graf_izgubljene
 ```
-
+Opazimo, da ni očitne povezave med starostjo in povprečjem izgubljenih žog. Zgostitev pri nižjih starostih (okoli 25 let) lahko razložimo z velikim številom vnosov za igralce take starosti. 
 
 
 ```{r graf_skoki, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov na 36 min in na tekmo.'}
 graf_skoki
 ```
 
+Podobno kot pri prejšnjem grafu opazimo, da ni velike povezave med starostjo in skoki. Spet opazimo zgostitev, ki je lahko razložena z velikim številom igralcev starosti okoli 25 let. 
+
+
 ```{r graf_visina, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov in blokad na 36 min.'}
 graf_visina
 ```
+
 
 
 ```{r graf_ izji_ast, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa višine in asistenc za 36 minut in na tekmo.'}
@@ -135,8 +141,8 @@ map_svet
 zemljevid_zda
 ```
 
-```{r graf_ast_tov, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Graf ast-tov ratio'}
-graf_ast_tov
+```{r map_ast_tov, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Zemljevid ast-tov ratio'}
+map_ast_tov
 ```
 
 
