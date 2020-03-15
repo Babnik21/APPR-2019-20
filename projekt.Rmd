@@ -104,46 +104,62 @@ source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 
 
 Spodnji graf prikazuje povprečja izgubljenih žog košarkarjev na 36 minut (levo) in na tekmo (desno) glede na košarkarjevo starost.
-```{r graf_izgubljene, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa izgubljenih žog na 36 min in na tekmo.'}
+```{r graf_izgubljene, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa izgubljenih žog glede na starost na 36 minut (levo) in na tekmo (desno).'}
 graf_izgubljene
 ```
-Opazimo, da ni očitne povezave med starostjo in povprečjem izgubljenih žog. Zgostitev pri nižjih starostih (okoli 25 let) lahko razložimo z velikim številom vnosov za igralce take starosti. 
+Opazimo, da ni očitne povezave med starostjo in povprečjem izgubljenih žog. Zgostitev pri nižjih starostih (okoli 25 let) lahko razložimo z velikim številom vnosov za igralce take starosti.   
 
 
-```{r graf_skoki, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov na 36 min in na tekmo.'}
+Spodnji graf prikazuje povprečja skokov košarkarjev na 36 minut (levo) in na tekmo (desno) glede na košarkarjevo starost.
+
+```{r graf_skoki, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov glede na starost na 36 minut (levo) in na tekmo (desno).'}
 graf_skoki
 ```
 
-Podobno kot pri prejšnjem grafu opazimo, da ni velike povezave med starostjo in skoki. Spet opazimo zgostitev, ki je lahko razložena z velikim številom igralcev starosti okoli 25 let. 
+Podobno kot pri prejšnjem grafu opazimo, da ni velike povezave med starostjo in skoki. Spet opazimo zgostitev, ki je lahko razložena z velikim številom igralcev starosti okoli 25 let.   
 
 
-```{r graf_visina, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov in blokad na 36 min.'}
+Spodnji graf prikazuje povprečja skokov (levo) in blokad (desno) košarkarjev na 36 minut glede na košarkarjevo višino.
+```{r graf_visina, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa skokov (levo) in blokad (desno) glede na višino na 36 minut.'}
 graf_visina
 ```
+Tokrat opazimo precejšnjo korelacijo med višino in skoki ter višino in blokadami. Po pričakovanjih dosegajo višji igralci več skokov in blokad na 36 minut. Pri skokih lahko vidimo, da za zelo visoke košarkarje povprečje skokov že vpada z večanjem višine. Razlog za to bi lahko bila motorična nespretnost ali pa prenizko težišče košarkarjev, ki bi zaradi tega morda izgubljali borbe pod obročem.  
 
 
-
-```{r graf_ izji_ast, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa višine in asistenc za 36 minut in na tekmo.'}
+Spodnji graf prikazuje povprečje asistenc igralcev na 36 minut (levo) in na tekmo (desno) glede na njihovo višino.
+```{r graf_ izji_ast, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa povprečja astistenc glede na višino na 36 minut (levo) in na tekmo (desno).'}
 graf_nizji_ast
 ```
+Tudi tokrat opazimo precejšnjo povezavo med višino ter asistencami. Nižji igralci v povprečju dosegajo več asistenc (tako na 36 minut kot na tekmo) kot višji košarkarji.  
 
-```{r graf_nizji_ft_36, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Graf višine, prostih metov in metov iz igre na 36 minut in na tekmo.'}
+
+Spodnji grafi prikazujejo uspešnost pri prostih metih (FT, zgoraj) in metih iz igre (FG, spodaj) na 36 minut (levo) in na tekmo (desno) glede na višino.
+```{r graf_nizji_ft_36, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafi uspešnosti pri prostih metih (FT, zgoraj) in metih iz igre (FG, spodaj) na 36 minut (levo) in na tekmo (desno) glede na višino.'}
 grid.arrange(graf_nizji_ft_36, graf_nizji_ft_annual, graf_nizji_fg_36, graf_nizji_fg_annual)
 ```
+Po pričakovanjih opazimo, da uspešnost pri prostih metih pada, ko višina narašča. Vzrok je najverjetneje dejstvo, da so nižji košarkarji spretnejši in bolj natančni. Presenetljivo pa je, da uspešnost pri metih iz igre celo malce narašča skupaj z višino. Najlažje je to razložiti z težavnostjo metov; višji košarkarji pogosto zaključujejo napade blizu obroča (polaganja, zabijanja), kar so veliko manj zahtevni meti, kot npr. meti za tri točke.
 
 
-```{r map_svet, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Zemljevid držav rojstva košarkašev'}
+
+Spodnji zemljevid prikazuje število košarkarjev rojenih v posamezni državi (opomba: zaradi velikega števila košarkarjev rojenih v ZDA si jih bomo ogledali v ločenem zemljevidu, za zdaj pa ZDA obarvamo rdeče).
+```{r map_svet, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Zemljevid držav rojstva košarkarjev'}
 map_svet
 ```
+Opazimo, da poleg ZDA največ košarkarjev prihaja iz Kanade, Avstralije, Argentine, Brazilije in mnogih evropskih držav, kot so Nemčija, Francija, Španija, Srbija, pa tudi Slovenija. 
 
 
-```{r zemljevid_zda, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Zemljevid držav rojstva aneriških košarkašov'}
+Spodnji zemljevid prikazuje število ameriških košarkarjev rojenih v posamezni zvezni državi.
+```{r zemljevid_zda, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Zemljevid držav rojstva ameriških košarkarjev'}
 zemljevid_zda
 ```
+Na zemljevidu lahko vidimo, da od prikazanih zveznih držav najbolj izstopa Kalifornija. To ni presenečenje, saj ima kar nekaj mest z močnimi franšizami ne le v košarki, ampak tudi v hokeju, baseballu, itd. (zanimanje za šport je torej veliko). Poleg tega ima tudi največ prebivalcev. Hkrati lahko opazimo, da več košarkarjev prihaja iz bolj poseljenih območij. Na drugem in tretjem mestu najdemo New York in Illinois, od koder prihajata dve izmed najmočnejših franšiz lige NBA, New York Knicks in Chicago Bulls.  
 
-```{r map_ast_tov, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Zemljevid ast-tov ratio'}
+
+Spodnji zemljevid prikazuje razmerje med asistencami in izgubljenimi žogami za igralce posameznih držav.
+```{r map_ast_tov, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Zemljevid razmerja AST/TOV'}
 map_ast_tov
 ```
+Opazimo, da imajo košarkarji iz ZDA relativno visoko razmerje asistenc in izgubljenih žog glede na ostale države (omejimo se na tiste, ki imajo večje število predstavnikov v ligi NBA). Iz Evrope najbolj izstopa Španija, med redkimi državami z razmerjem AST/TOV višjim kot ZDA pa (če dobro pogledamo) lahko najdemo tudi Slovenijo.
 
 
 

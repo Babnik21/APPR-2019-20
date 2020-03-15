@@ -12,14 +12,14 @@ izgubljene_36 <- ddply(izgubljene_36, .(Age, TOV), nrow)
 izgubljene_annual <- ddply(izgubljene_annual, .(Age, TOV), nrow)
 
 graf_izgubljene_36 <- ggplot(izgubljene_36 %>% filter(TOV < 20), aes(x = Age, y = TOV, fill=V1, color=V1, size = V1)) + 
-  geom_point() + ggtitle("Na 36 min") +
-  labs(fill = "Number of players") +
+  geom_point() + ggtitle("Na 36 minut") +
+  labs(fill = "Število košarkarjev") +
   scale_color_gradient(low="green", high="purple") +
   scale_fill_gradient(low="green",high="purple") + 
   guides(color = FALSE, size = FALSE)
 
 graf_izgubljene_annual <- ggplot(izgubljene_annual, aes(x = Age, y = TOV, color = V1, fill=V1, size = V1)) + geom_point() +
-  ggtitle("Na tekmo") + labs(size = "Number of players")+ 
+  ggtitle("Na tekmo")+ 
   scale_color_gradient(low="green", high="purple") +
   scale_fill_gradient(low="green",high="purple") + 
   guides(color = FALSE, size = FALSE, fill=FALSE)
@@ -28,7 +28,6 @@ graf_izgubljene_annual <- ggplot(izgubljene_annual, aes(x = Age, y = TOV, color 
 graf_izgubljene <- ggarrange(graf_izgubljene_36, graf_izgubljene_annual,
                              nrow = 1, common.legend = TRUE, legend="bottom")
 
-print(graf_izgubljene)
 
 
 #starejši manj skokov
@@ -42,54 +41,57 @@ skok_annual <- skok_annual[,c(1, 3)]
 skoki_36 <- ddply(skoki_36, .(Age, TRB), nrow)
 skok_annual <- ddply(skok_annual, .(Age, TRB), nrow)
 
-graf_skoki_36 <- ggplot(skoki_36, aes(x=Age, y=TRB, size = V1,fill=V1 ,color=V1)) + geom_point() + 
-  ggtitle("Na 36 min") + labs(fill = "Number of players") + guides(color=FALSE) + 
+graf_skoki_36 <- ggplot(skoki_36 %>% filter(TRB < 30), aes(x=Age, y=TRB)) + geom_point(aes(size = V1,fill=V1 ,color=V1)) + 
+  ggtitle("Na 36 minut") + labs(fill = "Število košarkarjev") + 
   scale_color_gradient(low="green", high="purple") +
-  scale_fill_gradient(low="green",high="purple") + 
+  scale_fill_continuous(low="green",high="purple", breaks = c(50, 150, 250)) + 
   guides(color = FALSE, size = FALSE)
 
 graf_skoki_annual <- ggplot(skok_annual, aes(x=Age, y=TRB)) + geom_point(aes(size = V1, fill=V1 ,color=V1)) + 
-  ggtitle("Na tekmo") + labs(fill = "Number of players") + 
+  ggtitle("Na tekmo") + 
   scale_color_gradient(low="green", high="purple") +
-  scale_fill_gradient(low="green",high="purple") + 
+  scale_fill_continuous(low="green",high="purple") + 
   guides(color = FALSE, size = FALSE, fill=FALSE)
 
 graf_skoki <- ggarrange(graf_skoki_36, graf_skoki_annual, nrow = 1, 
                         common.legend = TRUE, legend="bottom")
 
-print(graf_skoki)
+
 
 
 #višji igralci več skokov, blokad
-graf_visina_skoki <- ggplot(per.36.stats %>% filter(TRB < 40), aes(x = Height, y=TRB)) + 
-  geom_point() + geom_smooth(method = 'loess', color="green")
+graf_visina_skoki <- ggplot(per.36.stats %>% filter(TRB < 30), aes(x = Height, y=TRB)) + 
+  geom_point() + geom_smooth(method = 'loess', color="green") +
+  ggtitle("Skoki")
 
 graf_visina_blokade <- ggplot(per.36.stats %>% filter(BLK < 30) , aes(x = Height, y = BLK)) +
-  geom_point() + geom_smooth(method = 'loess', color="green")
+  geom_point() + geom_smooth(method = 'loess', color="green") +
+  ggtitle("Blokade")
 
 
 graf_visina <- ggarrange(graf_visina_skoki, graf_visina_blokade, nrow =1)
 
-print(graf_visina)
+
 
 #nižji več asistenc
 nizji_ast_36 <- aggregate(AST~Height, per.36.stats[,c(28, 21)], mean)
+
 nizji_ast_annual <- annual.totals %>%
   select(AST, Height, G)
-nizji_ast_annual1 <- aggregate(AST~Height, nizji_ast_annual[,c(1, 2)], sum)
-nizji_ast_annual2 <- aggregate(G~Height, nizji_ast_annual[,c(2, 3)], sum)
-nizji_ast_annual <- left_join(nizji_ast_annual1, nizji_ast_annual2)
-nizji_ast_annual$AST <- nizji_ast_annual$AST/nizji_ast_annual$G
+nizji_ast_annual_ast <- aggregate(AST~Height, nizji_ast_annual[,c(1, 2)], sum)
+nizji_ast_annual_game <- aggregate(G~Height, nizji_ast_annual[,c(2, 3)], sum)
+nizji_ast_annual <- left_join(nizji_ast_annual_ast, nizji_ast_annual_game)
+nizji_ast_annual$AST <- round(nizji_ast_annual$AST/nizji_ast_annual$G, 2)
 
 graf_nizji_ast_36 <- ggplot(nizji_ast_36, aes(x=Height, y=AST)) + 
   geom_line() + 
-  ggtitle("Povprečje asistenc igralcev z isto višino na 36 min")
+  ggtitle("Na 36 minut")
+
 graf_nizji_ast_annual <- ggplot(nizji_ast_annual, aes(x=Height, y=AST)) + 
-  geom_line() + ggtitle("na tekmo")
+  geom_line() + ggtitle("Na tekmo")
 
 
 graf_nizji_ast <- ggarrange(graf_nizji_ast_36, graf_nizji_ast_annual, nrow = 1)
-
 
 
 
@@ -99,20 +101,20 @@ nizji_ft_fg_annual <- annual.totals[,c(25, 24, 13, 21, 7)]
 
 
 graf_nizji_ft_36 <- ggplot(nizji_ft_fg_36 %>% filter(FTA >= 2), aes(x=Height, y =FT_procent)) +
-  geom_point() + ggtitle("Zadeti prosti meti na 36 min") +
+  geom_point() + ggtitle("Uspešnost pri FT na 36 min") +
   geom_smooth(color="purple")
+
 graf_nizji_ft_annual <- ggplot(nizji_ft_fg_annual %>% filter(FTA >= 2), aes(x=Height, y =FT_procent)) +
-  geom_point() + ggtitle("Zadeti prosti meti na tekmo") +
+  geom_point() + ggtitle("Uspešnost pri FT na tekmo") +
   geom_smooth(color="purple")
+
 graf_nizji_fg_36 <- ggplot(nizji_ft_fg_36 %>% filter(FGA >= 2), aes(x=Height, y =FG_procent)) +
-  geom_point() + ggtitle("Zadeti meti iz igre na 36 min") +
+  geom_point() + ggtitle("Uspešnost pri FG na 36 min") +
   geom_smooth(color="green")
+
 graf_nizji_fg_annual <- ggplot(nizji_ft_fg_annual %>% filter(FGA >= 2), aes(x=Height, y =FG_procent)) +
-  geom_point() + ggtitle("Zadeti meti iz igre na tekmo") +
+  geom_point() + ggtitle("Uspešnost pri FG na tekmo") +
   geom_smooth(color="green")
-
-
-
 
 
 #zemljevid
@@ -131,7 +133,7 @@ for (state in drzave$Var1) {
 USA <- data.frame("USA", vsota_ameriskih)
 names(USA) <- c("Var1", "Freq")
 drzave <- rbind(drzave, USA)
-drzave <- drzave %>% filter(Var1  %ni% amerika)
+drzave <- drzave %>% filter(Var1  %ni% state.name)
 names(drzave)[1] <- "region"
 zemljevid <- full_join(drzave, zemljevid, by= "region")
 
@@ -142,9 +144,8 @@ map_svet <- ggplot(zemljevid, aes(x = long, y = lat, group=group)) +
   geom_polygon(data = zemljevid %>% filter(region != "USA"), aes(fill=Freq)) +
   scale_fill_gradientn(colors=c("blue", "yellow", "green")) +
   geom_polygon(data = zemljevid %>% filter(region == "USA"), fill = "red")+
-  theme_void()+ theme(legend.position="right") +labs(fill="Število košarkašev")
+  theme_void()+ theme(legend.position="bottom") +labs(fill="Število košarkarjev")
 
-print(map_svet)
 
 #zemljevid - ZDA
 
@@ -157,9 +158,8 @@ amerika_states <- full_join(amerika_states, map_data("state"), by="region")
 zemljevid_zda <- ggplot(amerika_states, aes(x = long, y = lat, group = group))+
   geom_polygon(aes(fill = Freq)) + theme_void() +
   scale_fill_gradientn(colors=c("blue", "yellow", "green")) +
-  labs(fill="Število košarkašev")
+  labs(fill="Število košarkarjev")
 
-print(zemljevid_zda)
 
 #AST TOV ratio
 drzave_ast_tov <- annual.totals[c("Birth_State", "TOV", "AST")] %>% 
@@ -176,7 +176,7 @@ for (state in drzave_ast_tov$Birth_State) {
 USA_ast_tov <- data.frame("USA", vsota_tov, vsota_ast)
 names(USA_ast_tov) <- c("Birth_State", "TOV", "AST")
 drzave_ast_tov <- rbind(drzave_ast_tov, USA_ast_tov)
-drzave_ast_tov <- drzave_ast_tov %>% filter(Birth_State  %ni% amerika)
+drzave_ast_tov <- drzave_ast_tov %>% filter(Birth_State  %ni% state.name)
 names(drzave_ast_tov)[1] <- "region"
 drzave_ast_tov$ast_tov <- round(drzave_ast_tov$AST/drzave_ast_tov$TOV, 2)
 
@@ -184,7 +184,8 @@ zemljevid_ast_tov <- full_join(drzave_ast_tov, zemljevid, by="region")
 
 map_ast_tov <- ggplot(zemljevid_ast_tov, aes(x = long, y = lat, group = group))+
   geom_polygon(aes(fill = ast_tov)) + theme_void() +
-  scale_fill_gradientn(colors=c("blue", "yellow", "green"))
+  scale_fill_gradientn(colors=c("blue", "yellow", "green")) + 
+  labs(fill ="AST/TOV")
 
-print(map_ast_tov)
+
 
