@@ -10,9 +10,9 @@
 #vzeli in iz njih naredili očiščene tabele.
 
 #uvozimo podatke iz csv datotek:
-player.data <- read.csv("nba_data\\player_data.csv")
-players <- read.csv("nba_data\\Players.csv", na="")
-seasons.stats <- read.csv("nba_data\\Seasons_Stats.csv")
+player.data <- read.csv("nba_data/player_data.csv")
+players <- read.csv("nba_data/Players.csv", na="")
+seasons.stats <- read.csv("nba_data/Seasons_Stats.csv")
 players$X <- NULL
 seasons.stats$X <- NULL
 players.rodovniski <- players %>% select(Player, height, weight, collage,
