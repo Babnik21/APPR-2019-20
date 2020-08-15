@@ -30,8 +30,8 @@ V svoji projektni nalogi bom analiziral košarkarje lige NBA
 od leta 1980 naprej. Igralce bom analiziral na podlagi osebnih
 podatkov, kot so višina, teža, rojstna država, ter njihove
 statistike na tekmah (dosežene točke, skoki, asistence, itd.),
-ter iskal povezave med njimi. Pred začetkom sem postavil tri 
-hipoteze, katerih veljavnost želim preveriti.
+ter iskal povezave med njimi. Pred začetkom sem postavil nekaj 
+hipotez, katerih veljavnost želim preveriti.
 
 1. Starejši igralci v povprečju zabeležijo manj izgubljenih žog (zaradi izkušenj)
 2. Starejši igralci v povprečju zabeležijo manj skokov (zaradi 
@@ -40,9 +40,7 @@ slabše telesne pripravljenosti)
 4. Nižji igralci dosegajo več asistenc
 5. Nižji igralci beležijo boljše odstotke meta iz igre ter 
 prosih metov
-6. Igralci, ki so igrali v ameriški študentski ligi so vstopili
-v NBA bolje pripravljeni na profesionalno košarko (primerjava 
-prvih sezon posameznih igralcev)
+
 
 ![](slike/nba.jpg)
 

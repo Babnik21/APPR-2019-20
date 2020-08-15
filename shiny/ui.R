@@ -1,7 +1,7 @@
 library(shiny)
 
 shinyUI(fluidPage(
-  titlePanel("naslov"),
+  titlePanel("Ostali grafi"),
   sidebarPanel(
     selectInput(inputId  = "x_os", label = "Izberite kategorijo na x osi",
                 choices  = colnames(per.36.stats)[c(3:29)],
@@ -15,6 +15,8 @@ shinyUI(fluidPage(
   
   mainPanel(
     plotOutput("graf")
+    h4("Tukaj si lahko ogledamo še mnoge druge morebitne
+povezave med dvema statističnima podatkoma.")
   )
   
   
