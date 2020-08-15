@@ -14,7 +14,7 @@ shinyUI(fluidPage(
   ),
   
   mainPanel(
-    plotOutput("graf")
+    plotOutput("graf"),
     h4("Tukaj si lahko ogledamo še mnoge druge morebitne
 povezave med dvema statističnima podatkoma.")
   )
