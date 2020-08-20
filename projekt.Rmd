@@ -46,7 +46,11 @@ prosih metov
 
 
 vir: `https://cdn.nba.net/nba-drupal-prod/2019-09/SEO-image-NBA-logoman.jpg`
+
 ***
+
+
+
 
 # Obdelava, uvoz in čiščenje podatkov
 
