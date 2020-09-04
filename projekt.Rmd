@@ -132,7 +132,7 @@ Tokrat opazimo precejšnjo korelacijo med višino in skoki ter višino in blokad
 
 
 Spodnji graf prikazuje povprečje asistenc igralcev na 36 minut (levo) in na tekmo (desno) glede na njihovo višino.
-```{r graf_ izji_ast, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa povprečja astistenc glede na višino na 36 minut (levo) in na tekmo (desno).'}
+```{r graf_nizji_ast, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, fig.cap='Grafa povprečja astistenc glede na višino na 36 minut (levo) in na tekmo (desno).'}
 graf_nizji_ast
 ```
 Tudi tokrat opazimo precejšnjo povezavo med višino ter asistencami. Nižji igralci v povprečju dosegajo več asistenc (tako na 36 minut kot na tekmo) kot višji košarkarji.  
